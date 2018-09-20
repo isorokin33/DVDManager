@@ -1,0 +1,39 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     style="border: 1px solid #ccc;padding:5px;margin-bottom:20px;">
+
+    <form th:action="@{/admin/userdisks}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">My Disks</button>
+    </form>
+
+    | &nbsp;
+
+    <form th:action="@{/admin/adddisk}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Add Disk</button>
+    </form>
+
+    | &nbsp;
+
+    <form th:action="@{/admin/freedisks}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Free Disks</button>
+    </form>
+
+    | &nbsp;
+
+    <form th:action="@{/admin/takendisks}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Taken Disks</button>
+    </form>
+
+    | &nbsp;
+
+    <form th:action="@{/admin/handeddisks}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Handed Disks</button>
+    </form>
+
+    | &nbsp;
+
+    <form th:action="@{/logout}" method="post">
+        <button class="btn btn-md btn-danger btn-block" name="registration" type="Submit">Logout
+        </button>
+    </form>
+
+</div>

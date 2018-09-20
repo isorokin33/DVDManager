@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taken Disks</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            font-family: verdana;
+        }
+
+        h1{
+            font-size: 1em;
+        }
+
+        table {
+            width: 500px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 2px;
+        }
+
+        tr.header{
+            background-color: #00439A;
+            color : #FFFFFF;
+        }
+
+        tr.odd{
+            background-color: #CFCFCF;
+        }
+
+        tr.even{
+            background-color: #1076F5;
+        }
+    </style>
+</head>
+
+<body>
+<form th:action="@{/logout}" method="get">
+    <button class="btn btn-md btn-danger btn-block" name="registration"
+            type="Submit">Logout
+    </button>
+</form>
+<th:block th:include="admin/menu"></th:block>
+<h1 align="center" th:utext="${userName}"></h1>
+<table th:align="center">
+    <tr class="header">
+        <td>ID</td>
+        <td>DISK NAME</td>
+        <td>DESCRIPTION</td>
+        <td>DATE</td>
+        <td>USER NAME</td>
+        <td>ACTION</td>
+    </tr>
+    <tr th:each="takenItem : ${takenItems}"
+        th:class="odd" >
+        <td align="center" th:text="${takenItem.pk.disk.id}">id</td>
+        <td th:text="${takenItem.pk.disk.name}">diskname</td>
+        <td th:text="${takenItem.pk.disk.description}">description</td>
+        <td th:text="${takenItem.pk.startDate}"></td>
+        <td th:text="${takenItem.pk.disk.user.fullName}">fullName</td>
+        <td>
+            <form action="#" th:action="@{/admin/returndisk}"
+                  method="post"
+                  role="form">
+                <input type="hidden" th:value="${takenItem.pk.disk.id}" name="disk_id"/>
+                <input type="hidden" th:value="${takenItem.pk.startDate}" name="startDate"/>
+                <button type="submit" class="btn">Return Disk</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
